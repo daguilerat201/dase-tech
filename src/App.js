@@ -136,15 +136,34 @@ function App() {
           <main className="content">
             <Topbar setIsSidebar={setIsSidebar} />
             
-            <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
+            {/* <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} /> */}
           </main>
         </div>):(
 
-          <div className="col-2">
-            <h1> Login </h1>
+          <div className="col-8">
+            <table className="table table-striped mt-4"></table>
+            <thead>
+              <tr>
+                <th><h1>Login</h1></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <div className="form-group"><input type='email' className="form-control mb-1" placeholder='Email' onChange={(ev)=>setLoginEmail(ev.target.value)}></input></div>
+              </tr>
+              <tr>
+              <div className="form-group"><input type='password' className="form-control mb-1" placeholder='Password' onChange={(ev)=>setLoginPass(ev.target.value)}></input></div><br></br>
+              </tr>
+              <tr>
+              <button className='btn btn-primary' onClick={login}>Login</button><br></br>
+              </tr>
+              <td></td>
+              <td></td>
+            </tbody>
+            {/* <h1 > Login </h1>
             <div className="form-group"><input type='email' className="form-control mb-1" placeholder='Email' onChange={(ev)=>setLoginEmail(ev.target.value)}></input></div>
             <div className="form-group"><input type='password' className="form-control mb-1" placeholder='Password' onChange={(ev)=>setLoginPass(ev.target.value)}></input></div>
-            <button className='btn btn-primary' onClick={login}>Login</button>
+            <button className='btn btn-primary' onClick={login}>Login</button> */}
           </div>
         )}
       </ThemeProvider>
