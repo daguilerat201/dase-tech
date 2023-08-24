@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { onDelete, onFindAll, onFindById, onInsert, onUpdate } from '../apiDB/apiMatricula';
+import { onFindAll as onFindAllCursos } from '../apiDB/apiCursos';
+import { onFindAll as onFindAllEstudiante } from '../apiDB/apiEstudiante';
 
 export const AppMatricula = () => {
  
@@ -13,16 +15,30 @@ export const AppMatricula = () => {
     const [values, setValues] = useState(initialValues);
     const [currentId, setCurrentId] = useState('');
     const [matricula, setMatricula] = useState(null);
+    const [cursos, setCursos] = useState(null);
+    const [estudiante, setEstudiante] = useState(null);
 
     /* AREA EFFECTS */
     useEffect(() => {
         onGetMatricula();
+        onGetCursos();
+        onGetEstudiante();
    }, [])
 
     /* AREA METODOS CRUD */
     const onGetMatricula = async ()=>{
         const lstMatricula = await onFindAll('matricula');
         setMatricula(lstMatricula.docs);
+    }
+
+    const onGetCursos = async ()=>{
+        const lstCursos = await onFindAllCursos('cursos');
+        setCursos(lstCursos.docs);
+    }
+
+    const onGetEstudiante = async ()=>{
+        const lstEstudiante = await onFindAllEstudiante('estudiante');
+        setEstudiante(lstEstudiante.docs);
     }
 
     const onSubmit = async ev =>{
@@ -66,8 +82,32 @@ export const AppMatricula = () => {
                 <div className="col-4">
                     <h1 style={{color: "white", fontFamily: "Lucida Handwriting", fontSize: 60}}>Matrícula<hr /></h1>
                     <form onSubmit={ onSubmit }>
-                        <div className="form-group"><input type="text" name="idestudiante"   value={ values.idEstudiante } className="form-control mb-1" placeholder='Estudiante' onChange={ handleInpuntChage } required/></div>
-                        <div className="form-group"><input type="text" name="idcurso" value={ values.idCurso } className="form-control mb-1" placeholder='Curso' onChange={ handleInpuntChage } required/></div>
+                        {/* <div className="form-group"><input type="text" name="idestudiante"   value={ values.idEstudiante } className="form-control mb-1" placeholder='Estudiante' onChange={ handleInpuntChage } required/></div>
+                        <div className="form-group"><input type="text" name="idcurso" value={ values.idCurso } className="form-control mb-1" placeholder='Curso' onChange={ handleInpuntChage } required/></div> */}
+                        
+                        {/* DROPDOWN ESTUDIANTE */}
+                        <div className="form-group">
+                        <label for="idEstudiante">Elegir estudiante</label>
+                            <select class="form-control" name="idEstudiante" id="estudiante" onChange={ handleInpuntChage }>
+                                {estudiante && estudiante.map( cursos => 
+                                (
+                                    <option value={ cursos.data().nombre }>{ cursos.data().nombre }</option>
+                                ))
+                            }
+                            </select><br></br>
+                        </div>
+                        {/* DROPDOWN CURSO */}
+                        <div className="form-group">
+                        <label for="idCurso">Elegir curso</label>
+                            <select class="form-control" name="idCurso" id="curso" onChange={ handleInpuntChage }>
+                                {cursos && cursos.map( cursos => 
+                                (
+                                    <option value={ cursos.data().nombre }>{ cursos.data().nombre } - { cursos.data().dia } - { cursos.data().horario }</option>
+                                ))
+                            }
+                            </select><br></br>
+                        </div>
+
                         <button className='btn btn-primary'>{ currentId === ''?'Guardar' : 'Modificar' }</button>
                     </form>
                 </div>

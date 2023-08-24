@@ -7,9 +7,13 @@ export const AppEstudiante = () => {
  
     /* GENERAL */   
     const initialValues = {
+        cedula:"",
         nombre:"",
         edad:"",
-        idCurso:"",
+        canton:"",
+        provincia:"",
+        distrito:"",
+        direccion:""
     }
 
     /* AREA STATES */
@@ -76,10 +80,15 @@ export const AppEstudiante = () => {
                 <div className="col-4">
                     <h1 style={{color: "white", fontFamily: "Lucida Handwriting", fontSize: 60}}>Estudiante<hr /></h1>
                     <form onSubmit={ onSubmit }>
-                        <div className="form-group"><input type="text" name="nombre"   value={ values.nombre } className="form-control mb-1" placeholder='Nombre' onChange={ handleInpuntChage } required/></div>
-                        <div className="form-group"><input type="text" name="edad" value={ values.edad } className="form-control mb-1" placeholder='Edad' onChange={ handleInpuntChage } required/></div>
-                        
-                        <div className="form-group">
+                    <div className="form-group"><input type="text" name="cedula" value={ values.cedula } className="form-control mb-1" placeholder='Cédula' onChange={ handleInpuntChage } required/></div>
+                    <div className="form-group"><input type="text" name="nombre" value={ values.nombre } className="form-control mb-1" placeholder='Nombre' onChange={ handleInpuntChage } required/></div>
+                    <div className="form-group"><input type="text" name="edad" value={ values.edad } className="form-control mb-1" placeholder='Edad' onChange={ handleInpuntChage } required/></div>
+                    <div className="form-group"><input type="text" name="canton" value={ values.canton } className="form-control mb-1" placeholder='Cantón' onChange={ handleInpuntChage } required/></div>
+                    <div className="form-group"><input type="text" name="provincia" value={ values.provincia } className="form-control mb-1" placeholder='Provincia' onChange={ handleInpuntChage } required/></div>
+                    <div className="form-group"><input type="text" name="distrito" value={ values.distrito } className="form-control mb-1" placeholder='Distrito' onChange={ handleInpuntChage } required/></div>
+                    <div className="form-group"><input type="text" name="direccion" value={ values.direccion } className="form-control mb-1" placeholder='Dirección' onChange={ handleInpuntChage } required/></div>
+
+                        {/* <div className="form-group">
                         <label for="idCurso">Elegir curso</label>
                             <select class="form-control" name="idCurso" id="curso" onChange={ handleInpuntChage }>
                                 {cursos && cursos.map( cursos => 
@@ -88,7 +97,7 @@ export const AppEstudiante = () => {
                                 ))
                             }
                             </select><br></br>
-                        </div>
+                        </div> */}
                         <button className='btn btn-primary'>{ currentId === ''?'Guardar' : 'Modificar' }</button>
                     </form>
                 </div>
@@ -98,9 +107,14 @@ export const AppEstudiante = () => {
                     <table className="table table-striped mt-4">
                         <thead>
                             <tr>
+                                <th>Cédula</th>
                                 <th>Nombre</th>
                                 <th>Edad</th>
-                                <th>Curso</th>
+                                <th>Cantón</th>
+                                <th>Provincia</th>
+                                <th>Distrito</th>
+                                <th>Dirección</th>
+                                {/* <th>Curso</th> */}
                                 <th></th>
                             </tr>
                         </thead>
@@ -108,9 +122,14 @@ export const AppEstudiante = () => {
                             {
                                 estudiante && estudiante.map( estudiante => (
                                     <tr key={ estudiante.id }>
+                                        <td>{ estudiante.data().cedula }</td>
                                         <td>{ estudiante.data().nombre }</td>
                                         <td>{ estudiante.data().edad }</td>
-                                        <td>{ estudiante.data().idCurso }</td>
+                                        <td>{ estudiante.data().canton }</td>
+                                        <td>{ estudiante.data().provincia }</td>
+                                        <td>{ estudiante.data().distrito }</td>
+                                        <td>{ estudiante.data().direccion }</td>
+                                        {/* <td>{ estudiante.data().idCurso }</td> */}
                                         <td>
                                             <button className='btn btn-warning mx-1' data-id={ estudiante.id } onClick={ onUpdateEstudiante }>Editar</button>
                                             <button className='btn btn-danger' data-id={ estudiante.id } onClick={ onDeleteEstudiante }>Borrar</button>

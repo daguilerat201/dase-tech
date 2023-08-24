@@ -9,6 +9,10 @@ export const AppProfesor = () => {
         nombre:"",
         edad:"",
         idCurso:"",
+        canton:"",
+        provincia:"",
+        distrito:"",
+        direccion:""
     }
 
     /* AREA STATES */
@@ -77,7 +81,11 @@ export const AppProfesor = () => {
                     <form onSubmit={ onSubmit }>
                         <div className="form-group"><input type="text" name="nombre"   value={ values.nombre } className="form-control mb-1" placeholder='Nombre' onChange={ handleInpuntChage } required/></div>
                         <div className="form-group"><input type="text" name="edad" value={ values.edad } className="form-control mb-1" placeholder='Edad' onChange={ handleInpuntChage } required/></div>
-                        
+                        <div className="form-group"><input type="text" name="canton" value={ values.canton } className="form-control mb-1" placeholder='Cantón' onChange={ handleInpuntChage } required/></div>
+                        <div className="form-group"><input type="text" name="provincia" value={ values.provincia } className="form-control mb-1" placeholder='Provincia' onChange={ handleInpuntChage } required/></div>
+                        <div className="form-group"><input type="text" name="distrito" value={ values.distrito } className="form-control mb-1" placeholder='Distrito' onChange={ handleInpuntChage } required/></div>
+                        <div className="form-group"><input type="text" name="direccion" value={ values.direccion } className="form-control mb-1" placeholder='Dirección' onChange={ handleInpuntChage } required/></div>
+
                         <div className="form-group">
                         <label for="idCurso">Elegir curso</label>
                             <select class="form-control" name="idCurso" id="curso" onChange={ handleInpuntChage }>
@@ -101,6 +109,10 @@ export const AppProfesor = () => {
                                 <th>Nombre</th>
                                 <th>Edad</th>
                                 <th>Curso</th>
+                                <th>Cantón</th>
+                                <th>Provincia</th>
+                                <th>Distrito</th>
+                                <th>Dirección</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -111,6 +123,10 @@ export const AppProfesor = () => {
                                         <td>{ profesor.data().nombre }</td>
                                         <td>{ profesor.data().edad }</td>
                                         <td>{ profesor.data().idCurso }</td>
+                                        <td>{ profesor.data().canton }</td>
+                                        <td>{ profesor.data().provincia }</td>
+                                        <td>{ profesor.data().distrito }</td>
+                                        <td>{ profesor.data().direccion }</td>
                                         <td>
                                             <button className='btn btn-warning mx-1' data-id={ profesor.id } onClick={ onUpdateProfesor }>Editar</button>
                                             <button className='btn btn-danger' data-id={ profesor.id } onClick={ onDeleteProfesor }>Borrar</button>
