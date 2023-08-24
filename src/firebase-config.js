@@ -3,12 +3,12 @@ import { getAuth } from "firebase/auth";
 import{ getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD9LhMxXy7WZ7j4vQmK4hsonFQIxvjF9nc",
-  authDomain: "crud-react-ed7a4.firebaseapp.com",
-  projectId: "crud-react-ed7a4",
-  storageBucket: "crud-react-ed7a4.appspot.com",
-  messagingSenderId: "540012292656",
-  appId: "1:540012292656:web:d3a63d2dda3358d9699bf5"
+  apiKey: "AIzaSyDcTBO6GXzZjABBFzpJkosypmVOR9VWMdM",
+  authDomain: "dase-tech-a0778.firebaseapp.com",
+  projectId: "dase-tech-a0778",
+  storageBucket: "dase-tech-a0778.appspot.com",
+  messagingSenderId: "40553031683",
+  appId: "1:40553031683:web:270b0a5aabbc7992d78636"
 };
 
 // Initialize Firebase

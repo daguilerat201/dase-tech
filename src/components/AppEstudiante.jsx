@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import { onDelete, onFindAll, onFindById, onInsert, onUpdate } from '../apiDB/apiEstudiante';
 
@@ -70,6 +71,18 @@ export const AppEstudiante = () => {
                         <div className="form-group"><input type="text" name="nombre"   value={ values.nombre } className="form-control mb-1" placeholder='Nombre' onChange={ handleInpuntChage } required/></div>
                         <div className="form-group"><input type="text" name="edad" value={ values.edad } className="form-control mb-1" placeholder='Edad' onChange={ handleInpuntChage } required/></div>
                         <div className="form-group"><input type="text" name="idCurso"   value={ values.idCurso } className="form-control mb-1" placeholder='Curso' onChange={ handleInpuntChage } required/></div>
+                        
+                       {/*  <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown button
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                            </div> */}
+                        
                         <button className='btn btn-primary'>{ currentId === ''?'Guardar' : 'Modificar' }</button>
                     </form>
                 </div>

@@ -32,6 +32,7 @@ import Calendar from "./scenes/calendar/calendar";
 import { AppCurso } from "./components/AppCurso";
 import { AppEstudiante } from './components/AppEstudiante';
 import { AppProfesor } from './components/AppProfesor';
+import { AppMatricula } from './components/AppMatricula';
 
 
 const isAuthenticated = true;
@@ -86,6 +87,11 @@ function protectedLoader({ request }) {
       path: "/profesor",
       loader: protectedLoader,
       Component: AppProfesor,
+    },
+    {
+      path: "/matricula",
+      loader: protectedLoader,
+      Component: AppMatricula,
     },
     {
       path: "/logout",
