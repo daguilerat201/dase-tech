@@ -117,13 +117,14 @@ const Sidebar = () => {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Item
+          
+            {/* <Item
               title="Plataforma"
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
 
             <Typography
               variant="h6"
@@ -132,7 +133,7 @@ const Sidebar = () => {
             >
               Datos
             </Typography>
-            <Item
+            {/* <Item
               title="Registar"
               to="/form"
               icon={<PersonOutlinedIcon />}
@@ -152,14 +153,11 @@ const Sidebar = () => {
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
-              title="Profesores"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            /> */}
+            <button className='btn btn-primary'><a href="/estudiante">Estudiante</a></button> <hr></hr>
+            <button className='btn btn-primary'><a href="/profesor">Profesores</a></button><hr></hr>
+            <button className='btn btn-primary'><a href="/cursos">Cursos</a></button><hr></hr>
+            <button className='btn btn-primary'><a href="/matricula">Matrícula</a></button>
 
             <Typography
               variant="h6"
@@ -176,13 +174,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Preguntas"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            
             
           </Box>
         </Menu>

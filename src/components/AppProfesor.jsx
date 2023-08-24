@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { onDelete, onFindAll, onFindById, onInsert, onUpdate } from '../apiDB/apiProfesor';
+import { onFindAll as onFindAllCursos } from '../apiDB/apiCursos';
 
 export const AppProfesor = () => {
  
@@ -14,16 +15,23 @@ export const AppProfesor = () => {
     const [values, setValues] = useState(initialValues);
     const [currentId, setCurrentId] = useState('');
     const [profesor, setProfesor] = useState(null);
+    const [cursos, setCursos] = useState(null);
 
     /* AREA EFFECTS */
     useEffect(() => {
         onGetProfesor();
+        onGetCursos();
    }, [])
 
     /* AREA METODOS CRUD */
     const onGetProfesor = async ()=>{
         const lstProfesor = await onFindAll('profesor');
         setProfesor(lstProfesor.docs);
+    }
+
+    const onGetCursos = async ()=>{
+        const lstCursos = await onFindAllCursos('cursos');
+        setCursos(lstCursos.docs);
     }
 
     const onSubmit = async ev =>{
@@ -69,7 +77,18 @@ export const AppProfesor = () => {
                     <form onSubmit={ onSubmit }>
                         <div className="form-group"><input type="text" name="nombre"   value={ values.nombre } className="form-control mb-1" placeholder='Nombre' onChange={ handleInpuntChage } required/></div>
                         <div className="form-group"><input type="text" name="edad" value={ values.edad } className="form-control mb-1" placeholder='Edad' onChange={ handleInpuntChage } required/></div>
-                        <div className="form-group"><input type="text" name="idCurso"   value={ values.idCurso } className="form-control mb-1" placeholder='Curso' onChange={ handleInpuntChage } required/></div>
+                        
+                        <div className="form-group">
+                        <label for="idCurso">Elegir curso</label>
+                            <select class="form-control" name="idCurso" id="curso" onChange={ handleInpuntChage }>
+                                {cursos && cursos.map( cursos => 
+                                (
+                                    <option value={ cursos.data().nombre }>{ cursos.data().nombre } - { cursos.data().dia } - { cursos.data().horario }</option>
+                                ))
+                            }
+                            </select><br></br>
+                        </div>
+
                         <button className='btn btn-primary'>{ currentId === ''?'Guardar' : 'Modificar' }</button>
                     </form>
                 </div>

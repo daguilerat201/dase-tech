@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { onDelete, onFindAll, onFindById, onInsert, onUpdate } from '../apiDB/apiEstudiante';
+import { onFindAll as onFindAllCursos } from '../apiDB/apiCursos';
 
 export const AppEstudiante = () => {
  
@@ -15,16 +16,23 @@ export const AppEstudiante = () => {
     const [values, setValues] = useState(initialValues);
     const [currentId, setCurrentId] = useState('');
     const [estudiante, setEstudiante] = useState(null);
+    const [cursos, setCursos] = useState(null);
 
     /* AREA EFFECTS */
     useEffect(() => {
         onGetEstudiante();
+        onGetCursos();
    }, [])
 
     /* AREA METODOS CRUD */
     const onGetEstudiante = async ()=>{
         const lstEstudiante = await onFindAll('estudiante');
         setEstudiante(lstEstudiante.docs);
+    }
+
+    const onGetCursos = async ()=>{
+        const lstCursos = await onFindAllCursos('cursos');
+        setCursos(lstCursos.docs);
     }
 
     const onSubmit = async ev =>{
@@ -70,19 +78,17 @@ export const AppEstudiante = () => {
                     <form onSubmit={ onSubmit }>
                         <div className="form-group"><input type="text" name="nombre"   value={ values.nombre } className="form-control mb-1" placeholder='Nombre' onChange={ handleInpuntChage } required/></div>
                         <div className="form-group"><input type="text" name="edad" value={ values.edad } className="form-control mb-1" placeholder='Edad' onChange={ handleInpuntChage } required/></div>
-                        <div className="form-group"><input type="text" name="idCurso"   value={ values.idCurso } className="form-control mb-1" placeholder='Curso' onChange={ handleInpuntChage } required/></div>
                         
-                       {/*  <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                            </div> */}
-                        
+                        <div className="form-group">
+                        <label for="idCurso">Elegir curso</label>
+                            <select class="form-control" name="idCurso" id="curso" onChange={ handleInpuntChage }>
+                                {cursos && cursos.map( cursos => 
+                                (
+                                    <option value={ cursos.data().nombre }>{ cursos.data().nombre } - { cursos.data().dia } - { cursos.data().horario }</option>
+                                ))
+                            }
+                            </select><br></br>
+                        </div>
                         <button className='btn btn-primary'>{ currentId === ''?'Guardar' : 'Modificar' }</button>
                     </form>
                 </div>

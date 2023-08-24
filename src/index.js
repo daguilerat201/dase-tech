@@ -7,9 +7,9 @@ import 'bootswatch/dist/sandstone/bootstrap.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-       
+     <React.StrictMode>
+   
          <App />
-      
+     
      </React.StrictMode>
 );
